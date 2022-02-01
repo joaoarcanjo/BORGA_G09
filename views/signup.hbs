@@ -1,0 +1,23 @@
+<div class="form_box">
+    <h2> Registration </h2>
+    <form action="/signup" method="POST">
+        <div class="vstack mt-3 gap-2 col-md-10 mx-auto">
+            <input type="text" name="username" class="form-control" placeholder="Username" required="" maxlength="50">
+<!--            {{#if usernameIsInvalid}}
+                <div>
+                    <p class="text-danger">This username already exists.</p>
+                </div>
+            {{/if}}-->
+            <input type="text" name="name" class="form-control" placeholder="Name" required="" maxlength="50">
+            <input type="text" name="club" class="form-control" placeholder="Football club" required="" maxlength="50">
+            <input type="password" name="password" class="form-control" placeholder="Password" required="" maxlength="50">
+            <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm password" required="" maxlength="50">
+            {{#if hasError}}
+                <div>
+                    <p class="text-danger">{{message}}</p>
+                </div>
+            {{/if}}
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Create account</button>
+        </div>
+    </form>
+</div>

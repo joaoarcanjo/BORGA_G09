@@ -1,0 +1,2198 @@
+{
+	"info": {
+		"_postman_id": "3b935747-75dc-47bf-a28b-bb621996d1a9",
+		"name": "Borga",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get popular games",
+			"item": [
+				{
+					"name": "200: Return popular games",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?skip=0&limit=10",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200: Return popular games Paging",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?skip=2&limit=3",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200: Return 0 popular games",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?limit=0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200: Only skip",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?skip=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid query params < 0",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?skip=0&limit=-1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid query limit > 50",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?skip=0&limit=51",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid query skip < 0",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?skip=-1&limit=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "-1"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid query skip > 50",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games/popular?skip=51&limit=1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"popular"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "51"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get game",
+			"item": [
+				{
+					"name": "200: Return game",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games?name=Gloomhaven",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Gloomhaven"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Missing game name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Game name length 0",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games?name=",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Game name length > 50",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games?name=serbenfiquistaeternaalmaachamaimensaquenosconquistaelevaapalmaaluzintensa",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "serbenfiquistaeternaalmaachamaimensaquenosconquistaelevaapalmaaluzintensa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Game name not found",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/games?name=Root123",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"games"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Root123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create user",
+			"item": [
+				{
+					"name": "201: Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Diggy\",\r\n    \"club\": \"SLBenfica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/user",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Name is not inserted",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"alias\": \"Diggy\",\r\n    \"club\": \"SLBenfica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/user",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Club is not inserted",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Diggy\",\r\n    \"pub\": \"SLBenfica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/user",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create group",
+			"item": [
+				{
+					"name": "201: Create group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cenas\",\r\n    \"description\": \"Cenas bueda fixes e rebeldonas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "201: Create group to user without groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cenas\",\r\n    \"description\": \"Cenas bueda fixes e rebeldonas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Name is not inserted",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Cenas bueda fixes e rebeldonas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Description is not inserted",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cenas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Invalid token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1-9-0-4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cenas\",\r\n    \"description\": \"Cenas bueda fixes e rebeldonas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Non existent user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cenas\",\r\n    \"description\": \"Cenas bueda fixes e rebeldonas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update group",
+			"item": [
+				{
+					"name": "200: Update group: name & description",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sad games\",\r\n    \"description\": \"Os jogos mais pesadões\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200: Update group: name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Super heroes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200: Update group: description",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Os jogos mais levezinhos tipo o Liedson\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"DRENADOS\",\r\n    \"description\": \"Os jogos mais pesadões\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/a",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group body",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Non existent user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acba22",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"DRENADOS\",\r\n    \"description\": \"Os jogos mais pesadões\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Invalid token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"DRENADOS\",\r\n    \"description\": \"Os jogos mais pesadões\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Group not found",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"DRENADOS\",\r\n    \"description\": \"Os jogos mais pesadões\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/9",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: User doesn't have groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "ad903080-295c-4a84-a7c8-959dda27236d",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"DRENADOS\",\r\n    \"description\": \"Os jogos mais pesadões\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List groups",
+			"item": [
+				{
+					"name": "200: List groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete group",
+			"item": [
+				{
+					"name": "200: Delete group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/benfas",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"benfas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Invalid token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1-9-0-4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Non existent user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Group not found",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/12",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: User doesn't have groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get group details",
+			"item": [
+				{
+					"name": "200: Get group details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/-9",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"-9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id negative",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/benfas",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"benfas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Non existent user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Invalid token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1-9-0-4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Group not found",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/12",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: User doesn't have groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add game to group",
+			"item": [
+				{
+					"name": "201: Add a game to group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "201: Game already exists",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/-9",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"-9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id negative",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/benfas",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"benfas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid game id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Invalid token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1-9-0-4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}"
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Non existent user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Group not found",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/100",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: User doesn't have groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"TAAifFP590\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/100",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Game not found in BORGA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"slb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/api/groups/0",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete game to group",
+			"item": [
+				{
+					"name": "200: Delete game from group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0/TAAifFP590",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0",
+								"TAAifFP590"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/-1/123",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"-1",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400: Invalid group id negative",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/benfas/123",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"benfas",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Non existent user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0/123",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "401: Invalid token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1-9-0-4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0/123",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Game not found",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0/0000",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0",
+								"0000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: Group not found",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "0f3edb9b-76eb-4fc3-a87b-a40980b9a922",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/100/123",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"100",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404: User doesn't have groups",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "fc585a9a-be72-486c-be1a-438f41acbaae",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/groups/0/123",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"groups",
+								"0",
+								"123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "localhost"
+		}
+	]
+}

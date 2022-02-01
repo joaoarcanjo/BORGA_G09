@@ -1,0 +1,59 @@
+<div class="mt-5 container">
+    <h2>{{gameName}} </h2>
+    <div class="vstack mt-5 gap-2 col-md-3 mx-auto">
+        <a href={{gameUrl}} class="list-group-item list-group-item-action">
+            Click here to buy
+            <img src= {{imageUrl}} height="100" width="100"/>
+        </a>
+    </div>
+    <div class='mt-4 mb-2'>
+        <a href='/groups/addGame/{{id}}'>
+            <button class="btn btn btn-secondary">Add to a group</button>
+        </a>
+    </div>
+    <div class="vstack mt-2 gap-2 col-md-9 mx-auto">
+
+        <div class="vstack mt-2 bg-light">
+            <h4>Description: </h4>
+            {{gameDescription}}
+        </div>
+
+        <div class="vstack mt-2">
+            <h4>Mechanics: </h4>    
+            {{#each mechanics}}
+                {{#if beginRow}}
+                    <div class="row">  
+                {{/if}} 
+                <div class="w-25 p-3">
+                    <div class="card">
+                        <div class="card-header">
+                            {{name}}
+                        </div>
+                    </div>
+                </div>
+                {{#if endRow}}
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+        
+        <div class="vstack mt-2">
+            <h4>Categories: </h4>    
+            {{#each categories}}
+                {{#if beginRow}}
+                    <div class="row">  
+                {{/if}} 
+                <div class="w-25 p-3">
+                    <div class="card">
+                        <div class="card-header">
+                            {{name}}
+                        </div>
+                    </div>
+                </div>
+                {{#if endRow}}
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>

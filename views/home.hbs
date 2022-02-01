@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="vstack mt-5 gap-2 col-md-3 mx-auto">
+        <h1 class="display-1">Borga</h1>
+        <p style="padding-top:50px">Search for a game:</p>
+        <form method='GET' action="/games">
+            <div class="input-group">
+                <input type="name" name="name" class="form-control" placeholder="Game name" required="" autofocus="" maxlength="50">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
+            </div>
+        </form>
+        <div>
+            <a href="games/popular">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Most popular games</button>
+            </a>
+        </div>
+    </div>
+</div>

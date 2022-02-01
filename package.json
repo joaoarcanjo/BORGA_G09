@@ -1,0 +1,35 @@
+{
+  "name": "borga",
+  "version": "1.0.0",
+  "main": "borga-server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node borga-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isel-leic-ipw/borga-ipw_pi-leicip51d-g09.git"
+  },
+  "keywords": [],
+  "author": "Diogo Novo & João Arcanjo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isel-leic-ipw/borga-ipw_pi-leicip51d-g09/issues"
+  },
+  "homepage": "https://github.com/isel-leic-ipw/borga-ipw_pi-leicip51d-g09#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "hbs": "^4.2.0",
+    "node-fetch": "^2.6.6",
+    "passport": "^0.5.2",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^27.4.3",
+    "jest-openapi": "^0.14.2",
+    "supertest": "^6.1.6"
+  }
+}

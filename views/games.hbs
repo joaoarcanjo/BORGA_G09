@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>{{title}}</h1>
+    {{#if noGames}}
+        <p > No game found! Try again with other name.</p>
+    {{/if}}
+    {{#each games}}
+        {{#if beginRow}}
+            <div class="row">
+        {{/if}}
+                <div class="col-6">
+                    <div class="mt-2">
+                        <div class="card bg-light">
+                            <a href='/games/{{id}}'>
+                                <div class="card-body">                        
+                                    <h5 class="card-title">{{name}}</h5>                                            
+                                    <div>
+                                        <a href='/groups/addGame/{{id}}'>
+                                            <button type="button" class="btn btn-secondary"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/></svg>
+                                            </button>
+                                        </a>
+                                    </div>                                        
+                                </div> 
+                            </a>                            
+                        </div>
+                    </div>
+                </div>
+        {{#if endRow}}
+            </div>
+        {{/if}}
+    {{/each}}
+    {{#if popular}}
+        <div class='mt-2 mb-2'>
+            <a href='popular?limit={{limit}}'>
+                <button class="btn btn-primary btn-lg btn-block">Show more games</button>
+            </a>
+        </div>
+    {{/if}}
+</div>

@@ -1,0 +1,53 @@
+<div id="groups" data-token="{{token}}" class="vstack mt-5 gap-2 col-md-2 mx-auto">
+    <div class="card p-4">
+        <div class=" image d-flex flex-column justify-content-center align-items-center">
+            <button class="btn btn-secondary">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" height="100" width="100" />
+            </button> 
+            <span class="name mt-3">{{userName}}</span>
+            <span class="idd">{{userClub}}</span>
+            <div class=" d-flex mt-2">
+                <form method="POST" action="/logout">                  
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="vstack gap-2 col-md-8 mx-auto">
+        <h2>Your groups: </h2>
+        <div>
+            <a href="groups/new">
+                <button type="button" class="btn btn-primary"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/></svg>
+                </button>
+            </a>
+        </div>
+        <div>
+            {{#if noGroups}}
+                <p > Your groups list is empty! </p>
+            {{/if}} 
+        </div>
+        <ol class="list-group">
+            {{#each groups}}
+            <div id="groups-group-{{id}}" class="groups">
+                <a href="groups/{{id}}" class="list-group-item list-group-item-action flex-column ">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="mb-0">{{name}}</h5>
+                        <span class="badge bg-primary rounded-pill">{{nrGames}}</span>
+                    </div>
+                    <div>
+                        <p class="mb-1">{{description}}</p>
+                    </div>
+                </a>
+                <button id="delete-groups-{{id}}" type="button" class="delete btn btn-outline-danger">Delete</button>
+                <a href="/groups/{{id}}/update">
+                    <button type="button" class="btn btn-outline-success">Update</button>
+                </a>
+            </div>
+            {{/each}}
+        </ol>
+    </div>
+</div>
+<script type="text/javascript" src="/public/js/groups.js"></script>

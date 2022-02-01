@@ -1,0 +1,73 @@
+.form_box {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    margin: 50px auto 50px;
+    padding: 20px 0 28px;
+    width: 396px;
+}
+
+.group_box {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    margin: 25px auto 0;
+    padding: 20px 0 28px;
+    width: 396px;
+}
+
+.group_list_box {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    max-width: 796px;
+    width: 100%;
+}
+
+.game_box {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    margin: 25px auto 0;
+    padding: 20px 0 28px;
+    width: auto;
+}
+
+.line {
+    align-items: center;
+    border-bottom: 2px solid #dadde1;
+    display: flex;
+    margin: 20px 16px;
+    text-align: center;
+}
+.navBg {
+    background-color: rgb(217, 233, 255)
+}
+
+.bodyBg {
+    background-color: rgb(225, 237, 253)
+}
+
+div.button_margin_right {
+    margin-right: 20px;
+}
+
+.img_game {
+    max-width: 100%;
+    max-height: 100px;
+    height: auto;
+    width: auto;
+}
+
+div.header {
+    height: 65px;
+    background-color: rgb(241, 241, 241);
+}

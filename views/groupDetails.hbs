@@ -1,0 +1,36 @@
+<div id="games" data-token="{{token}}" class="container">
+    <h2>{{groupName}} </h2>
+    <h5>{{groupDescription}}</h5>
+    <div class="mt-5">
+    {{#if noGames}}
+        <div>
+            <h5>Empty group!</h5>
+            <img src= "https://www.aclproduct.com/images/empty.png" height="500" width="500"/>
+        </div>
+    {{/if}}
+    {{#each games}}
+        {{#if beginRow}}
+            <div class="game-row row">  
+        {{/if}} 
+            <div id="game-{{id}}" class="game col-md-2">
+                <div class="game_box">
+                    <a href='/games/{{id}}' class="list-group-item list-group-item-action flex-column">
+                        <div class="card-header header">
+                            {{name}}
+                        </div>
+                        <div class="card-body">
+                            <img class="img_game" src= {{image}} height="100" width="100"/>
+                        </div>
+                    </a>  
+                    <div class="mt-3">
+                        <button id="delete-games-{{groupId}}-{{id}}" type="button" class="delete btn btn-outline-danger">Delete</button>
+                    </div>  
+                </div>                       
+            </div>
+        {{#if endRow}}
+            </div>
+        {{/if}}
+    {{/each}}
+    </div>
+</div>
+<script type="text/javascript" src="/public/js/groupDetails.js"></script>

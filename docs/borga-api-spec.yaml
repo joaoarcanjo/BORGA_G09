@@ -1,0 +1,743 @@
+openapi: 3.0.1
+info:
+  title: Borga API
+  description: This application provides access, through a web interface (hypermedia), to some of the features provided by the Board Game Atlas website
+  version: 1.0.0
+servers:
+  - url: http://localhost:1904/api
+    description: Localhost server to test Borga API
+security:
+  - BearerAuth: []
+paths:
+  /games/popular:
+    get:
+      tags:
+        - Games
+      summary: Get the most popular games
+      description: Returns a list with the most popular games
+      operationId: getPopularGames
+      security: []
+      parameters:
+        - name: skip
+          in: query
+          description: Number of games to skip for pagination
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 50
+            default: 0
+        - name: limit
+          in: query
+          description: Maximum number of games to return
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 50
+            default: 10
+      responses:
+        200:
+          description: Response with the list of popular games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/responses/GameSummary'
+                example: [{ id: "RLlDWHh7hR", name: "Gloomhaven", image_url: "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254920151-51ulRXlJ7LL.jpg" }]
+        500:
+          description: Response when exists an internal server error, like when client_id is not provided
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Internal server error
+  /games:
+    get:
+      tags:
+        - Games
+      summary: Searches games by game
+      description: Returns the games which the name searched is included in them
+      operationId: searchGames
+      security: []
+      parameters:
+        - name: name
+          in: query
+          description: Game name
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 50
+      responses:
+        200:
+          description: Response with informations of the desired game
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/GameSummary'
+              example: [{ id: "RLlDWHh7hR", name: "Gloomhaven", image_url: "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254920151-51ulRXlJ7LL.jpg" }]
+        400:
+          description: Response when an invalid game name is inserted or if game name is missing
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid game name
+        404:
+          description: Response when no game is found
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Game not found
+        500:
+          description: Response when exists an internal server error, like when client_id is not provided
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Internal server error
+  /games/{gameid}:
+    get:
+      tags:
+        - Games
+      summary: Gets the details of a certain game
+      description: Gets the more informations about the desired game
+      operationId: getGameDetails
+      security: []
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/GameDetails'
+        400:
+          description: Response when game id is invalid or missing
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing game id
+        404:
+          description: Response when the game is not found
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Game not found
+        500:
+          description: Response when exists an internal server error, like when client_id is not provided
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Internal server error, please verify your client_id.
+  /user:
+    post:
+      tags:
+        - Users
+      summary: Creates a new user
+      description: Adds a new user to the system
+      operationId: createUser
+      security: []
+      requestBody:
+        description: User informations to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        201:
+          description: Response when a user was successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/responses/UserDetails'
+                example: { username: "JPistols", name: "Jonas", club: "SLBenfica" }
+        400:
+          description: Response when the body has an invalid or missing object required for user creation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing object required for user creation
+  /groups:
+    post:
+      tags:
+        - Groups
+      summary: Creates a new group
+      description: Adds a new group to a user
+      operationId: createGroup
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Group informations to add
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - description
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Action games
+                description:
+                  type: string
+                  example: An action game is a video game genre that emphasizes physical challenges
+      responses:
+        201:
+          description: Response when a group was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/GroupSummary'
+        400:
+          description: Response when the body has an invalid or missing object required for group creation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing object required for group creation
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+    get:
+      tags:
+        - Groups
+      summary: Lists the groups of a certain user
+      description: Returns the list of groups that a certain user has
+      operationId: getGroups
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Response with the list of popular games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/responses/GroupSummary'
+                example: [ { id: 0, name: "Games", description: "Many games", nrGames: 0 } ]
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          description: Response when the user doesn't have groups
+          content:
+            application/json:
+              schema:
+                type: string
+                example: User doesn't have groups
+  /groups/{groupId}:
+    put:
+      tags:
+        - Groups
+      summary: Updates an existing group
+      description: Updates the intended fields of a certain group
+      operationId: updateGroup
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Group informations to update, at least one of the properties need to be provided
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Horror games
+                description:
+                  type: string
+                  example: The best horror games in the universe!
+      responses:
+        200:
+          $ref: '#/components/responses/GroupSummary'
+        400:
+          description: Response when the body or path have an invalid or missing object required for group update
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing object required for group update
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          description: Response when the group id was not found
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Group id not found
+    delete:
+      tags:
+        - Groups
+      summary: Deletes an existing group
+      description: Deletes the desired group from the list of groups of a certain user
+      operationId: deleteGroup
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          $ref: '#/components/responses/GroupSummary'
+        400:
+          description: Response when group id is invalid or missing
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing group id, it must be an integer >= 0
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          description: Response when the user doesn't have a group with the provided id
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Group not found
+    get:
+      tags:
+        - Groups
+      summary: Gets the details of a certain group
+      description: Gets the details of a certain group, with its name, description and names of the included games
+      operationId: getGroupDetails
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          $ref: '#/components/responses/GroupDetails'
+        400:
+          description: Response when group id is invalid or missing
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing group id, it must be an integer >= 0
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          description: Response when the user doesn't have a group with the provided id
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Group not found
+    post:
+      tags:
+        - Groups
+      summary: Add a game to a certain group
+      description: Adds a new game from Board Game Atlas to a certain group
+      operationId: addGroupGame
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Game id from Board Game Atlas
+        content:
+          application/json:
+            schema:
+              required:
+                - id
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: TAAifFP590
+      responses:
+        201:
+          $ref: '#/components/responses/GameSummary'
+        400:
+          description: Response when group id or game id is invalid or missing
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing group id or game id
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          description: Response when the user doesn't have a group with the desired id or when game was not found
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Group id not found or game not found
+        500:
+          description: Response when exists an internal server error, like when client_id is not provided
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Internal server error
+  /groups/{groupId}/{gameId}:
+    delete:
+      tags:
+        - Groups
+      summary: Removes a game from a group
+      description: Removes a certain game from the desired group
+      operationId: deleteGroupGame
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          $ref: '#/components/responses/GameSummary'
+        400:
+          description: Response when group id or game id is invalid or missing
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing group id or game id
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          description: Response when the user doesn't have a group with the desired id or when game was not found in the group
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Group id not found or game not found
+    get:
+      tags:
+        - Groups
+      summary: Gets the details of a certain game
+      description: Gets the details of a certain game located inside the given group
+      operationId: getGameDetails
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/GameDetails'
+        400:
+          description: Response when group or game id is invalid or missing
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid or missing group id, it must be an integer >= 0
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          description: Response when the user doesn't have a group or a game with the provided id
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Game not found
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Game:
+      required:
+        - id
+        - name
+        - description
+        - url
+        - image_url
+        - mechanics
+        - categories
+      type: object
+      properties:
+        id:
+          type: string
+          example: RLlDWHh7hR
+        name:
+          type: string
+          example: Gloomhaven
+        description:
+          type: string
+          example: Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives.
+        url:
+          type: string
+          example: https://www.boardgameatlas.com/game/RLlDWHh7hR/gloomhaven
+        image_url:
+          type: string
+          example: https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254920151-51ulRXlJ7LL.jpg
+        mechanics:
+          type: array
+          items:
+            type: string
+          example: [ "Campaign", "Cooperative Play", "Grid Movement" ]
+        categories:
+          type: array
+          items:
+            type: string
+          example: [ "Adventure", "Fantasy" ]
+    User:
+      required:
+        - username
+        - password
+        - confirmPassword
+        - name
+        - club
+      type: object
+      properties:
+        username:
+          type: string
+          example: JPistols
+        password:
+          type: string
+          example: slb123
+        confirmPassword:
+          type: string
+          example: slb123
+        name:
+          type: string
+          example: Jonas
+        club:
+          type: string
+          example: SLBenfica
+    Group:
+      required:
+        - id
+        - name
+        - description
+        - games
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 0
+        name:
+          type: string
+          example: Action games
+        description:
+          type: string
+          example: An action game is a video game genre that emphasizes physical challenges
+        games:
+          type: array
+          items:
+            type: string
+          example: ["GameId1", "GameId2", "GameId3"]
+  responses:
+    UserDetails:
+      description: Details of a certain user
+      content:
+        application/json:
+          schema:
+            required:
+              - username
+              - name
+              - club
+            type: object
+            properties:
+              username:
+                type: string
+                example: JPistols
+              name:
+                type: string
+                example: Jonas
+              club:
+                type: string
+                example: SLBenfica
+    UnauthorizedError:
+      description: Invalid authorization token
+      content:
+        application/json:
+          schema:
+            type: string
+            example: Access token is missing or invalid
+    GroupDetails:
+      description: Details of a certain group, including its game names
+      content:
+        application/json:
+          schema:
+            required:
+              - id
+              - name
+              - description
+              - games
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              name:
+                type: string
+                example: Action games
+              description:
+                type: string
+                example: An action game is a video game genre that emphasizes physical challenges
+              games:
+                type: array
+                items:
+                  $ref: '#/components/responses/GameSummary'
+                example: [{ id: "RLlDWHh7hR", name: "Gloomhaven", image_url: "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254920151-51ulRXlJ7LL.jpg" }]
+    GroupSummary:
+      description: Summary of the Group object created/updated/deleted
+      content:
+        application/json:
+          schema:
+            required:
+              - id
+              - name
+              - description
+              - nrGames
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              name:
+                type: string
+                example: Action games
+              description:
+                type: string
+                example: An action game is a video game genre that emphasizes physical challenges
+              nrGames:
+                type: integer
+                example: 3
+    GameSummary:
+      description: Summary of the Game object searched/created/deleted
+      content:
+        application/json:
+          schema:
+            required:
+              - id
+              - name
+              - image_url
+            type: object
+            properties:
+              id:
+                type: string
+                example: TAAifFP590
+              name:
+                type: string
+                example: Root
+              image_url:
+                type: string
+                example: https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254920151-51ulRXlJ7LL.jpg
+    GameDetails:
+      description: Details of a certain game
+      content:
+        application/json:
+          schema:
+            required:
+              - id
+              - name
+              - description
+              - url
+              - image_url
+              - mechanics
+              - categories
+            type: object
+            properties:
+              id:
+                type: string
+                example: RLlDWHh7hR
+              name:
+                type: string
+                example: Gloomhaven
+              description:
+                type: string
+                example: Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives.
+              url:
+                type: string
+                example: https://www.boardgameatlas.com/game/RLlDWHh7hR/gloomhaven
+              image_url:
+                type: string
+                example: https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254920151-51ulRXlJ7LL.jpg
+              mechanics:
+                type: array
+                items:
+                  type: string
+                example: ["Campaign", "Cooperative Play", "Grid Movement"]
+              categories:
+                type: array
+                items:
+                  type: string
+                example: ["Adventure", "Fantasy"]
+tags:
+  - name: Games
+  - name: Users
+  - name: Groups

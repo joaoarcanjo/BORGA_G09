@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light navBg">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand " href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="132px" height="72px" viewBox="30 1 72 72" content="&lt;mxfile host=&quot;Electron&quot; modified=&quot;2021-12-26T12:21:40.068Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.5.1 Chrome/89.0.4389.82 Electron/12.0.1 Safari/537.36&quot; etag=&quot;pKAdRJWvGdVj8k3-5Pd8&quot; version=&quot;14.5.1&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;r1-t_ensrt_MMPaDey4w&quot; name=&quot;Página-1&quot;&gt;zZRLT4NAEMc/DccmsLRYjwVrvahJa9LobQNb2LgwuCyF+ukd3OXVR6KJTbwA+5vXzvwnWG6Q1itJ8+QRIiYsYke15d5ZhJCZi88GHDRw5p4GseSRQT3Y8E9moG1oySNWjBwVgFA8H8MQsoyFasSolFCN3XYgxlVzGrMTsAmpOKVbHqlE0zm56fkD43HSVna8W21JaetsOikSGkE1QO7ScgMJoPRXWgdMNLNr56Lj7i9Yu4tJlqmfBOzkdLJ+UwHd+68rFS+ft3k8MVn2VJSmYYt4AvP5O8C0ODAaaoP3UTY39V94inoQ+4lV+FxDSrPe2LSpDmIc0WSaFN/KLtDBtfN6GOHFzdtv62IDurTmZnZdUiKhzCLW9GSjuUq4YptcX7LCDUSWqFTgyWlKcyECECDxnEGGTn6hJLyzI2imwKRi9cXxOp1ouOwMUqbkAV1MgDs1OptFn7YbXPVr47S7kAxWxjOMmk2Nu9S9mPhh9PyFtuS/aLu4irZnhTwj+F9oOzvSllxPWzz2/4Rv2+DH6i6/AA==&lt;/diagram&gt;&lt;/mxfile&gt;"><defs/><g><rect x="0" y="0" width="120" height="60" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 1px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font face="Times New Roman" style="font-size: 30px">B</font></div></div></div></foreignObject><text x="60" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><rect x="10" y="10" width="120" height="60" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 40px; margin-left: 11px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font face="Times New Roman" style="font-size: 30px">A</font></div></div></div></foreignObject><text x="70" y="44" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg></a>
+        </a>
+        
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.isel.pt/">ISEL</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.boardgameatlas.com/">Board Games Atlas</a>
+            </li>
+        </ul>  
+    </div>
+    <div class="button_margin_right">
+        {{#if isLogin}}
+            <a href ="/groups">
+                <button class="btn btn-primary btn-lg btn-block">My Profile</button>
+            </a>
+        {{else}}
+            <a href ="/login">
+                <button class="btn btn-primary btn-lg btn-block">Login</button>
+            </a>
+        {{/if}}
+    </div>
+</nav>

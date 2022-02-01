@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <h2> Select the group to add: </h2>
+    {{#each groups}}
+        <div class="mt-1 d-flex justify-content-center">
+            <form name="submitForm" method="POST" action="/groups/{{id}}">
+                <form action="/groups" method="POST">
+                    <input name='gameId' value={{gameId}} class="form-control" style="display: none">
+                        <div class="input-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">{{name}}</button>
+                    </div>
+                </form>
+            </form>  
+        </div>
+    {{/each}}
+</div>
